@@ -1,0 +1,7 @@
+__pycache__/
+*.py[cod]
+.venv/
+.DS_Store
+node_modules/
+data/build.sqlite*
+data/sources/pdb-cache/

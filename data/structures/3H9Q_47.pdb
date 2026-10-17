@@ -1,0 +1,177 @@
+HEADER    TRANSFERASE/ANTIBIOTIC                  30-APR-09   3H9Q              
+TITLE     CRYSTAL STRUCTURE OF E. COLI MCCB + SEMET MCCA                        
+HELIX    1   1 ASN A   31  CYS A   44  1                                  14    
+HELIX    2   2 SER A   50  GLU A   56  1                                   7    
+HELIX    3   3 PRO A   61  ASN A   75  1                                  15    
+HELIX    4   4 GLU A   82  ASN A   84  5                                   3    
+HELIX    5   5 TYR A   92  TYR A  102  1                                  11    
+HELIX    6   6 ASN A  105  ASN A  115  1                                  11    
+HELIX    7   7 GLY A  124  GLY A  138  1                                  15    
+HELIX    8   8 SER A  162  VAL A  166  5                                   5    
+HELIX    9   9 ASN A  169  LYS A  180  1                                  12    
+HELIX   10  10 TYR A  197  VAL A  203  5                                   7    
+HELIX   11  11 ASN A  218  ALA A  230  1                                  13    
+HELIX   12  12 GLU A  273  ARG A  285  1                                  13    
+HELIX   13  13 PHE A  291  LYS A  312  1                                  22    
+HELIX   14  14 GLY B   22  GLU B   26  5                                   5    
+HELIX   15  15 ASN B   31  TYR B   43  1                                  13    
+HELIX   16  16 CYS B   44  ILE B   46  5                                   3    
+HELIX   17  17 TYR B   51  ALA B   58  1                                   8    
+HELIX   18  18 PRO B   61  ASN B   75  1                                  15    
+HELIX   19  19 GLU B   82  ASN B   84  5                                   3    
+HELIX   20  20 TYR B   92  SER B  101  1                                  10    
+HELIX   21  21 ASN B  105  ASN B  115  1                                  11    
+HELIX   22  22 GLY B  124  GLY B  138  1                                  15    
+HELIX   23  23 GLU B  151  LEU B  155  5                                   5    
+HELIX   24  24 SER B  162  VAL B  166  5                                   5    
+HELIX   25  25 ASN B  169  ASN B  182  1                                  14    
+HELIX   26  26 ASP B  199  VAL B  203  5                                   5    
+HELIX   27  27 ASN B  218  ARG B  229  1                                  12    
+HELIX   28  28 LYS B  272  ARG B  285  1                                  14    
+HELIX   29  29 PHE B  291  LYS B  312  1                                  22    
+HELIX   30  30 ASN C   31  TYR C   43  1                                  13    
+HELIX   31  31 CYS C   44  ILE C   46  5                                   3    
+HELIX   32  32 SER C   50  GLU C   56  1                                   7    
+HELIX   33  33 PRO C   61  ASN C   75  1                                  15    
+HELIX   34  34 TYR C   92  TYR C  102  1                                  11    
+HELIX   35  35 ASN C  105  ASN C  115  1                                  11    
+HELIX   36  36 GLY C  124  GLY C  138  1                                  15    
+HELIX   37  37 GLU C  151  ARG C  157  5                                   7    
+HELIX   38  38 SER C  162  VAL C  166  5                                   5    
+HELIX   39  39 ASN C  169  LYS C  180  1                                  12    
+HELIX   40  40 ASP C  196  VAL C  203  5                                   8    
+HELIX   41  41 ASN C  218  ASN C  231  1                                  14    
+HELIX   42  42 LYS C  272  ARG C  285  1                                  14    
+HELIX   43  43 PHE C  291  LYS C  312  1                                  22    
+HELIX   44  44 GLY D   22  GLU D   26  5                                   5    
+HELIX   45  45 ASN D   31  CYS D   44  1                                  14    
+HELIX   46  46 SER D   50  ALA D   58  1                                   9    
+HELIX   47  47 PRO D   61  ASN D   75  1                                  15    
+HELIX   48  48 GLU D   82  ASN D   84  5                                   3    
+HELIX   49  49 TYR D   92  TYR D  102  1                                  11    
+HELIX   50  50 ASN D  105  ASN D  115  1                                  11    
+HELIX   51  51 GLY D  124  GLY D  138  1                                  15    
+HELIX   52  52 GLU D  151  LEU D  155  5                                   5    
+HELIX   53  53 SER D  162  VAL D  166  5                                   5    
+HELIX   54  54 ASN D  169  ASN D  182  1                                  14    
+HELIX   55  55 ASP D  196  HIS D  201  1                                   6    
+HELIX   56  56 ASN D  218  ALA D  230  1                                  13    
+HELIX   57  57 ASN D  274  ARG D  285  1                                  12    
+HELIX   58  58 PHE D  291  LYS D  312  1                                  22    
+SHEET    1   A 2 TYR A   3  LEU A   5  0                                        
+SHEET    2   A 2 ILE A  78  PRO A  80 -1  O  ILE A  79   N  ILE A   4           
+SHEET    1   B 3 ILE A  11  ARG A  13  0                                        
+SHEET    2   B 3 GLY A  18  VAL A  20 -1  O  LEU A  19   N  ALA A  12           
+SHEET    3   B 3 GLN A  27  VAL A  29 -1  O  VAL A  29   N  GLY A  18           
+SHEET    1   C 8 SER A 186  ILE A 190  0                                        
+SHEET    2   C 8 GLU A 141  ILE A 145  1  N  LEU A 144   O  SER A 188           
+SHEET    3   C 8 LYS A 117  LEU A 121  1  N  VAL A 118   O  GLU A 141           
+SHEET    4   C 8 ILE A 208  VAL A 211  1  O  VAL A 210   N  VAL A 119           
+SHEET    5   C 8 TYR A 234  VAL A 240  1  O  ILE A 235   N  TRP A 209           
+SHEET    6   C 8 ILE A 243  TYR A 250 -1  O  GLY A 247   N  ASN A 236           
+SHEET    7   C 8 LYS A 321  ILE A 325 -1  O  ILE A 325   N  ALA A 244           
+SHEET    8   C 8 ILE A 332  ASN A 336 -1  O  HIS A 333   N  GLY A 324           
+SHEET    1   D 3 SER B  49  SER B  50  0                                        
+SHEET    2   D 3 ASP B   2  LEU B   5 -1  N  TYR B   3   O  SER B  49           
+SHEET    3   D 3 ILE B  78  PRO B  80 -1  O  ILE B  79   N  ILE B   4           
+SHEET    1   E 3 ILE B  11  TYR B  14  0                                        
+SHEET    2   E 3 GLY B  17  VAL B  20 -1  O  LEU B  19   N  ALA B  12           
+SHEET    3   E 3 GLN B  27  VAL B  29 -1  O  VAL B  29   N  GLY B  18           
+SHEET    1   F 8 SER B 186  ILE B 190  0                                        
+SHEET    2   F 8 GLU B 141  ILE B 145  1  N  LEU B 144   O  SER B 188           
+SHEET    3   F 8 LYS B 117  LEU B 121  1  N  VAL B 118   O  ILE B 143           
+SHEET    4   F 8 ILE B 208  VAL B 211  1  O  VAL B 210   N  VAL B 119           
+SHEET    5   F 8 TYR B 234  VAL B 240  1  O  ILE B 235   N  TRP B 209           
+SHEET    6   F 8 ILE B 243  TYR B 250 -1  O  VAL B 245   N  GLY B 238           
+SHEET    7   F 8 LYS B 321  ILE B 325 -1  O  ILE B 323   N  PHE B 246           
+SHEET    8   F 8 ILE B 332  ASN B 336 -1  O  HIS B 333   N  GLY B 324           
+SHEET    1   G 2 TYR C   3  LEU C   5  0                                        
+SHEET    2   G 2 ILE C  78  PRO C  80 -1  O  ILE C  79   N  ILE C   4           
+SHEET    1   H 3 ARG C  13  TYR C  14  0                                        
+SHEET    2   H 3 GLY C  17  VAL C  20 -1  O  GLY C  17   N  TYR C  14           
+SHEET    3   H 3 GLN C  27  VAL C  29 -1  O  GLN C  27   N  VAL C  20           
+SHEET    1   I 8 SER C 186  ILE C 190  0                                        
+SHEET    2   I 8 GLU C 141  ILE C 145  1  N  LEU C 144   O  SER C 188           
+SHEET    3   I 8 LYS C 117  LEU C 121  1  N  ILE C 120   O  ILE C 143           
+SHEET    4   I 8 ILE C 208  VAL C 211  1  O  VAL C 210   N  VAL C 119           
+SHEET    5   I 8 TYR C 234  VAL C 240  1  O  ILE C 235   N  VAL C 211           
+SHEET    6   I 8 ILE C 243  TYR C 250 -1  O  GLY C 247   N  ASN C 236           
+SHEET    7   I 8 LYS C 321  TRP C 326 -1  O  ILE C 325   N  ALA C 244           
+SHEET    8   I 8 ILE C 332  ASN C 336 -1  O  HIS C 333   N  GLY C 324           
+SHEET    1   J 2 TYR D   3  LEU D   5  0                                        
+SHEET    2   J 2 ILE D  78  PRO D  80 -1  O  ILE D  79   N  ILE D   4           
+SHEET    1   K 3 ILE D  11  TYR D  14  0                                        
+SHEET    2   K 3 GLY D  17  VAL D  20 -1  O  LEU D  19   N  ALA D  12           
+SHEET    3   K 3 GLN D  27  VAL D  29 -1  O  GLN D  27   N  VAL D  20           
+SHEET    1   L 8 SER D 186  ILE D 190  0                                        
+SHEET    2   L 8 GLU D 141  ILE D 145  1  N  ILE D 142   O  SER D 188           
+SHEET    3   L 8 LYS D 117  LEU D 121  1  N  ILE D 120   O  ILE D 143           
+SHEET    4   L 8 ILE D 208  VAL D 211  1  O  VAL D 210   N  VAL D 119           
+SHEET    5   L 8 TYR D 234  VAL D 240  1  O  ILE D 235   N  TRP D 209           
+SHEET    6   L 8 ILE D 243  TYR D 250 -1  O  GLY D 247   N  ASN D 236           
+SHEET    7   L 8 LYS D 321  TRP D 326 -1  O  ILE D 325   N  ALA D 244           
+SHEET    8   L 8 ILE D 332  ASN D 336 -1  O  HIS D 333   N  GLY D 324           
+HETATM10356  N   MSE G   1      17.314  20.171  32.091  1.00 97.18           N  
+HETATM10357  CA  MSE G   1      18.680  20.351  31.523  1.00 97.34           C  
+HETATM10358  C   MSE G   1      18.672  21.269  30.300  1.00 97.83           C  
+HETATM10359  O   MSE G   1      19.527  21.158  29.412  1.00 97.77           O  
+HETATM10360  CB  MSE G   1      19.216  19.012  31.118  1.00 96.73           C  
+HETATM10361  CG  MSE G   1      18.325  18.365  30.154  1.00 98.09           C  
+HETATM10362 SE   MSE G   1      19.237  16.751  29.539  1.00 99.05          SE  
+HETATM10363  CE  MSE G   1      21.159  17.225  29.212  1.00 99.82           C  
+ATOM  10364  N   ARG G   2      17.693  22.167  30.263  1.00 98.51           N  
+ATOM  10365  CA  ARG G   2      17.546  23.127  29.174  1.00 98.71           C  
+ATOM  10366  C   ARG G   2      18.457  24.336  29.432  1.00 99.07           C  
+ATOM  10367  O   ARG G   2      18.780  25.096  28.515  1.00 98.38           O  
+ATOM  10368  CB  ARG G   2      16.079  23.552  29.073  1.00 98.31           C  
+ATOM  10369  CG  ARG G   2      15.690  24.368  27.840  1.00 97.82           C  
+ATOM  10370  CD  ARG G   2      14.157  24.392  27.675  1.00 96.39           C  
+ATOM  10371  NE  ARG G   2      13.646  23.180  27.030  1.00 94.39           N  
+ATOM  10372  CZ  ARG G   2      12.402  22.719  27.157  1.00 93.50           C  
+ATOM  10373  NH1 ARG G   2      11.512  23.357  27.916  1.00 92.27           N  
+ATOM  10374  NH2 ARG G   2      12.037  21.618  26.511  1.00 92.18           N  
+ATOM  10375  N   THR G   3      18.857  24.507  30.690  1.00 99.61           N  
+ATOM  10376  CA  THR G   3      19.769  25.578  31.087  1.00100.07           C  
+ATOM  10377  C   THR G   3      21.080  24.892  31.463  1.00100.52           C  
+ATOM  10378  O   THR G   3      21.063  23.762  31.959  1.00100.68           O  
+ATOM  10379  CB  THR G   3      19.257  26.356  32.330  1.00 99.76           C  
+ATOM  10380  OG1 THR G   3      18.698  25.434  33.276  1.00 99.20           O  
+ATOM  10381  CG2 THR G   3      18.213  27.395  31.933  1.00 99.20           C  
+ATOM  10382  N   GLY G   4      22.213  25.544  31.206  1.00101.03           N  
+ATOM  10383  CA  GLY G   4      23.481  24.941  31.580  1.00101.11           C  
+ATOM  10384  C   GLY G   4      23.323  24.691  33.064  1.00101.26           C  
+ATOM  10385  O   GLY G   4      22.522  25.380  33.693  1.00101.04           O  
+ATOM  10386  N   ASN G   5      24.040  23.724  33.631  1.00102.15           N  
+ATOM  10387  CA  ASN G   5      23.898  23.445  35.058  1.00103.36           C  
+ATOM  10388  C   ASN G   5      23.668  24.800  35.736  1.00104.32           C  
+ATOM  10389  O   ASN G   5      24.368  25.763  35.435  1.00105.04           O  
+ATOM  10390  CB  ASN G   5      25.144  22.708  35.563  1.00102.89           C  
+ATOM  10391  CG  ASN G   5      25.382  21.405  34.799  1.00102.41           C  
+ATOM  10392  OD1 ASN G   5      24.441  20.805  34.273  1.00101.96           O  
+ATOM  10393  ND2 ASN G   5      26.632  20.962  34.740  1.00101.60           N  
+ATOM  10394  N   ALA G   6      22.656  24.860  36.606  1.00104.89           N  
+ATOM  10395  CA  ALA G   6      22.196  26.071  37.312  1.00105.23           C  
+ATOM  10396  C   ALA G   6      23.117  26.989  38.151  1.00105.60           C  
+ATOM  10397  O   ALA G   6      24.015  26.530  38.855  1.00106.43           O  
+ATOM  10398  CB  ALA G   6      20.997  25.683  38.160  1.00105.07           C  
+ATOM  10399  N   ASN G   7      22.832  28.295  38.079  1.00105.41           N  
+ATOM  10400  CA  ASN G   7      23.534  29.356  38.818  1.00105.14           C  
+ATOM  10401  C   ASN G   7      22.851  30.705  38.543  1.00104.97           C  
+ATOM  10402  O   ASN G   7      22.713  31.506  39.501  1.00104.15           O  
+ATOM  10403  CB  ASN G   7      25.030  29.431  38.441  1.00104.64           C  
+ATOM  10404  CG  ASN G   7      25.848  30.265  39.437  1.00104.10           C  
+ATOM  10405  OD1 ASN G   7      26.154  29.816  40.546  1.00103.14           O  
+ATOM  10406  ND2 ASN G   7      26.185  31.492  39.044  1.00103.49           N  
+ATOM  10407  OXT ASN G   7      22.468  30.931  37.370  1.00105.25           O  
+HETATM10572  O   HOH G 126      25.997  26.560  36.855  1.00 58.52           O  
+HETATM10573  O   HOH G 127      23.375  28.288  34.765  1.00 53.09           O  
+CONECT1035610357                                                                
+CONECT10357103561035810360                                                      
+CONECT10358103571035910364                                                      
+CONECT1035910358                                                                
+CONECT103601035710361                                                           
+CONECT103611036010362                                                           
+CONECT103621036110363                                                           
+CONECT1036310362                                                                
+CONECT1036410358                                                                
+END
