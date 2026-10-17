@@ -12,6 +12,7 @@ No rented server, API key, sign-in, remote inference or Python runtime is needed
 - 12,784 DRAMP source records; 11,718 distinct sequence strings; 10,579 canonical records eligible for sequence calculations; 5,183 source SMILES annotations.
 - 433 sequence-matched PDB chain structures, including multiple structures/chains for the same sequence; 315 DRAMP records have a local sequence-matched structure.
 - 3Dmol.js all-atom molecular viewer: cartoon, sticks, spheres, lines, solvent-accessible surfaces, atom/residue identification, labels, rotation and PNG/PDB export.
+- Interactive inverse helical-wheel designer: choose 1–72 residues, fill numbered positions, read the linear N→C sequence, search partial positional constraints, and export FASTA/SVG.
 - Mass, charge versus pH, estimated pI, GRAVY, hydrophobic fraction, ideal-helix hydrophobic moment, aromaticity, reduced-cysteine extinction coefficient, amino-acid composition and plots.
 - Published-neighbor searches by global edit similarity or scaled physicochemical descriptors, with alignments and study links.
 - 3D comparisons using sequence-guided Cα alignments, proper-rotation least-squares fits, RMSD, coverage, shape descriptors and interactive overlays. Upload a PDB file or select a local structure.
@@ -28,6 +29,20 @@ python3 -m http.server 8000 --directory docs
 Open http://localhost:8000. Python is only a convenient file server here; the browser does all calculations. Opening `index.html` through a `file://` URL is unsupported because workers and data fetches require HTTP(S).
 
 A current Chrome, Edge, Firefox or Safari with Web Workers and WebGL is recommended. Initial loading downloads a roughly 9 MB uncompressed searchable index; gzip/Brotli-capable hosting reduces transfer. Full annotations load on demand in 145 record shards. PDB files load only when viewed; full database downloads occur only on request. The rendered site, data and downloads total about **139 MB**, below the 1 GB budget. This is an online static site, not a guaranteed fully offline PWA.
+
+## Design a peptide on the helical wheel
+
+Open **Helical-wheel designer** in the sidebar:
+
+1. Set **Number of amino acids** (1–72) and press **Apply length**.
+2. Click a numbered wheel position, then select a canonical residue from the palette. You can also focus a wheel position and type letters. Entry advances in sequence order; arrow keys move between positions and Delete clears a position.
+3. The **Linear sequence · N → C** field updates immediately in **position-number order**, not clockwise angular order. Empty positions appear as `?`; they are wildcards, not amino acids.
+4. With every position filled, copy the sequence, download FASTA, or choose **Analyze & find related peptides** to use the existing calculation/similarity workbench. The workbench's pH, terminal chemistry and similarity mode are preserved.
+5. With a partially or fully filled wheel, **Find exact positional matches** searches source-study-linked canonical DRAMP records of exactly the selected length. Every specified residue must match its numbered position; blank positions are unconstrained. The first 100 matching source records are shown, and links open the existing explorer. At least one residue is required. No match is a valid result; it does not imply the designed sequence lacks activity or exists nowhere else.
+
+**Import a linear sequence**, **Use workbench sequence**, or the workbench's **Edit this sequence on the wheel** button provides a round trip for sequences up to 72 residues. Length changes preserve the common prefix. **Undo** restores previous fills, clears, imports and length changes (up to 40 edits). Download **Wheel SVG** for a vector illustration, including partially filled designs.
+
+Positions follow the ideal 100° α-helical projection. After position 18, extra display rings prevent coincident slots; these rings are a layout aid, not covalent cycles, predicted 3D coordinates or a change in sequence order. The designer can construct any canonical helical-peptide design, while database searches are limited to the included DRAMP collection. There is no helicity or activity prediction. The pure model lives in `static/wheel-core.js` and the isolated UI in `static/wheel-designer.js`; existing scientific calculations and PDB data remain unchanged.
 
 ## Free GitHub Pages deployment
 
@@ -94,7 +109,7 @@ node tests/browser.test.cjs
 python3 scripts/check_static.py
 ```
 
-The Python suite has 19 tests. The browser core/worker suite has 14 checks covering descriptor agreement, alignment, quaternion/Kabsch agreement, reflection handling, dataset loading, subdirectory URLs, search/filter/pagination, sharded records, both neighbor modes, structural comparison, uploaded PDB identity fits, exports and invalid inputs. `check_static.py` checks all record shards, structure paths, database equality and the size budget.
+The Python suite has 21 tests. The browser core/worker suite has 22 checks covering descriptor agreement, alignment, quaternion/Kabsch agreement, reflection handling, dataset loading, subdirectory URLs, search/filter/pagination, sharded records, both neighbor modes, structural comparison, uploaded PDB identity fits, exports and invalid inputs, plus wheel round trips, sequence numbering, all 72 supported geometries, resizing, wildcard matching, and invalid wheel inputs. `check_static.py` checks all record shards, structure paths, database equality and the size budget.
 
 ## Attribution and licenses
 

@@ -80,6 +80,17 @@ class HTTP(unittest.TestCase):
  def test_structure_and_upload(self):
   q=next(r for r in structure_corpus() if r['pdb_id']=='2MAG');d=json.load(self.post('/api/structure-search',{'structure_id':q['id']}));self.assertTrue(d['matches']);self.assertGreaterEqual(d['matches'][0]['coverage'],80)
   raw=(ROOT/'data'/q['file']).read_text();d=json.load(self.post('/api/structure-search',{'pdb_text':raw,'chain':'A'}));self.assertEqual(d['matches'][0]['rmsd'],0)
+ def test_wheel_pattern_search(self):
+  positions=['']*23;positions[0]='G';positions[3]='K'
+  result=json.load(self.post('/api/wheel-search',{'positions':positions}))
+  self.assertGreater(result['total'],0)
+  self.assertTrue(all(len(r['sequence'])==23 and r['sequence'][0]=='G' and r['sequence'][3]=='K' for r in result['items']))
+  full=json.load(self.post('/api/wheel-search',{'positions':list('GIGKFLHSAKKFGKAFVGEIMNS')}))
+  self.assertTrue(any(r['id']=='DRAMP02271' for r in full['items']))
+ def test_invalid_wheel_queries(self):
+  for positions in [[],['']*11,['X'],['K']*73,['kk'],None]:
+   with self.assertRaises(urllib.error.HTTPError) as e:self.post('/api/wheel-search',{'positions':positions})
+   self.assertEqual(e.exception.code,400)
  def test_static_and_missing(self):
   self.assertEqual(self.get('/').status,200);self.assertEqual(self.get('/vendor/3Dmol-min.js').status,200)
   with self.assertRaises(urllib.error.HTTPError) as e:self.get('/api/peptides/UNKNOWN')

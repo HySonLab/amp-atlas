@@ -55,6 +55,19 @@ def sequence_search(sequence,properties,mode='sequence',limit=15):
         if len(hits)>=limit:break
     return hits
 
+def wheel_search(data):
+    positions=data.get('positions')
+    if not isinstance(positions,list) or not 1<=len(positions)<=72:raise ValueError('Choose 1–72 wheel positions')
+    if any(not isinstance(a,str) or (a!='' and (len(a)!=1 or a not in 'ACDEFGHIKLMNPQRSTVWY')) for a in positions):raise ValueError('Use one canonical amino acid per position')
+    if not any(positions):raise ValueError('Specify at least one residue before searching')
+    hits=[]
+    for r in corpus():
+        seq=r['sequence'];m=r['metadata'];title=str(m.get('Title') or '').strip();reference=str(m.get('Reference') or '').strip()
+        study=bool(re.search(r'\b\d{6,9}\b',str(m.get('Pubmed_ID') or ''))) or (len(title)>12 and len(reference)>6 and title.lower() not in ['not included yet','not found'])
+        if len(seq)==len(positions) and study and all(not a or seq[i]==a for i,a in enumerate(positions)):
+            hits.append({k:r[k] for k in ['id','name','sequence','source_url']}|{'study':{k:m.get(k) for k in ['Pubmed_ID','Title','Reference','Activity']}})
+    return {'pattern':''.join(a or '?' for a in positions),'length':len(positions),'total':len(hits),'items':hits[:100],'limit':100}
+
 COMPARE_LOCK=threading.BoundedSemaphore(2)
 def structure_search(data):
     if data.get('structure_id'):
@@ -142,12 +155,13 @@ class Handler(BaseHTTPRequestHandler):
             return self.send(out.getvalue().encode(),kind='text/csv',filename='peptides.csv')
         return self.send({'error':'Unknown format'},400)
     def do_POST(self):
-        if self.path not in ['/api/analyze','/api/structure-search']:return self.send({'error':'Not found'},404)
+        if self.path not in ['/api/analyze','/api/structure-search','/api/wheel-search']:return self.send({'error':'Not found'},404)
         try:
             length=int(self.headers.get('Content-Length',0))
             if length<1 or length>2_100_000:raise ValueError('Request must be 1 byte–2.1 MB')
             data=json.loads(self.rfile.read(length))
             if not isinstance(data,dict):raise ValueError('JSON object required')
+            if self.path=='/api/wheel-search':return self.send(wheel_search(data))
             if self.path=='/api/structure-search':
                 if not COMPARE_LOCK.acquire(blocking=False):return self.send({'error':'Structure search is busy; retry shortly'},429)
                 try:return self.send(structure_search(data))
