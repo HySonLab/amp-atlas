@@ -81,7 +81,8 @@ Rebuild after changing the shared UI, browser engine, or database:
 ```sh
 python3 scripts/build_pages.py
 python3 scripts/check_static.py
-node tests/browser.test.cjs
+pnpm install --frozen-lockfile --ignore-scripts
+pnpm test
 ```
 
 To update the database itself, read `LOCAL_SERVER.md` first, install `requirements.txt`, rebuild the database, refresh CSV/FASTA exports as needed, and then rebuild Pages. The browser export builder copies the authoritative SQLite snapshot and reads its records; it never crawls at deployment time. This repository intentionally includes both source data and generated deployable files for reproducibility and zero-build hosting. All hosted data are public.
@@ -105,11 +106,12 @@ No pretrained AMP, toxicity, MIC, secondary-structure or 3D prediction model is 
 ```sh
 python3 -m pip install -r requirements.txt
 python3 -m unittest -v test_app.py
-node tests/browser.test.cjs
+pnpm install --frozen-lockfile --ignore-scripts
+pnpm test
 python3 scripts/check_static.py
 ```
 
-The Python suite has 21 tests. The browser core/worker suite has 22 checks covering descriptor agreement, alignment, quaternion/Kabsch agreement, reflection handling, dataset loading, subdirectory URLs, search/filter/pagination, sharded records, both neighbor modes, structural comparison, uploaded PDB identity fits, exports and invalid inputs, plus wheel round trips, sequence numbering, all 72 supported geometries, resizing, wildcard matching, and invalid wheel inputs. `check_static.py` checks all record shards, structure paths, database equality and the size budget.
+The Python suite has 23 tests. The browser core/worker suite has 30 checks covering descriptor agreement, alignment, quaternion/Kabsch agreement, reflection handling, dataset loading, subdirectory URLs, search/filter/pagination, sharded records, both neighbor modes, structural comparison, uploaded PDB identity fits, exports and invalid inputs, plus wheel round trips, sequence numbering, all 72 supported geometries, resizing, wildcard matching, and invalid wheel inputs. `check_static.py` checks all record shards, structure paths, database equality and the size budget.
 
 ## Attribution and licenses
 
@@ -119,3 +121,9 @@ The Python suite has 21 tests. The browser core/worker suite has 22 checks cover
 - **3Dmol.js** is bundled locally with its license and dependency notices in `static/vendor/` and `docs/vendor/`. https://3dmol.org/.
 
 This is an independent DRAMP-inspired research workspace hosted for HySonLab. Its software license does not replace upstream data/library licenses.
+
+## Live helical-wheel design
+
+Fill residues gradually to search after a 250 ms pause. Exact positional matches use the chosen length and treat empty positions as wildcards. Filter by pH-7 charge, GRAVY, hydrophobic percentage, or linked structures. The selected-position residue counts relax only that position while preserving other constraints; they count source records and are not activity predictions. Live search can be paused; manual search remains available. Complete designs show calculated mass, charge, GRAVY, hydrophobic fraction, pI and ideal-helical hydrophobic moment; incomplete designs show assigned-residue counts.
+
+The DOM integration suite exercises editing, debounce, filter validation, pause/manual search, clear/undo, residue suggestions, complete-design properties and the existing workbench handoff. Development tests require Node.js 22+ and pnpm 11.25.0; deployed Pages has no runtime package dependencies.

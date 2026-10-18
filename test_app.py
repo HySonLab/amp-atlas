@@ -91,6 +91,16 @@ class HTTP(unittest.TestCase):
   for positions in [[],['']*11,['X'],['K']*73,['kk'],None]:
    with self.assertRaises(urllib.error.HTTPError) as e:self.post('/api/wheel-search',{'positions':positions})
    self.assertEqual(e.exception.code,400)
+ def test_live_wheel_filters_and_suggestions(self):
+  positions=['']*23;positions[0]='G';positions[3]='K'
+  r=json.load(self.post('/api/wheel-search',{'positions':positions,'selected_position':3,'filters':{'has_structure':True,'charge_min':0}}))
+  self.assertGreater(r['total'],0);self.assertTrue(all(x['has_structure'] and x['properties']['charge']>=0 for x in r['items']))
+  self.assertEqual(sum(x['count'] for x in r['suggestions']),r['suggestion_total'])
+  r=json.load(self.post('/api/wheel-search',{'positions':positions,'filters':{'charge_min':100}}));self.assertEqual(r['total'],0);self.assertGreater(r['positional_total'],0)
+ def test_invalid_live_filters(self):
+  for filters in [{'charge_min':4,'charge_max':2},{'hydrophobic_min':-1},{'has_structure':'true'},{'gravy_min':float('nan')}]:
+   with self.assertRaises(urllib.error.HTTPError) as e:self.post('/api/wheel-search',{'positions':['K']*11,'filters':filters})
+   self.assertEqual(e.exception.code,400)
  def test_static_and_missing(self):
   self.assertEqual(self.get('/').status,200);self.assertEqual(self.get('/vendor/3Dmol-min.js').status,200)
   with self.assertRaises(urllib.error.HTTPError) as e:self.get('/api/peptides/UNKNOWN')

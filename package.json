@@ -1,0 +1,11 @@
+{
+  "name": "amp-atlas",
+  "private": true,
+  "version": "0.5.0",
+  "scripts": {
+    "test": "node tests/browser.test.cjs && node tests/designer-dom.test.cjs"
+  },
+  "devDependencies": {
+    "linkedom": "0.18.13"
+  }
+}

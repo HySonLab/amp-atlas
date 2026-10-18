@@ -60,13 +60,40 @@ def wheel_search(data):
     if not isinstance(positions,list) or not 1<=len(positions)<=72:raise ValueError('Choose 1–72 wheel positions')
     if any(not isinstance(a,str) or (a!='' and (len(a)!=1 or a not in 'ACDEFGHIKLMNPQRSTVWY')) for a in positions):raise ValueError('Use one canonical amino acid per position')
     if not any(positions):raise ValueError('Specify at least one residue before searching')
-    hits=[]
+    raw=data.get('filters',{})
+    if not isinstance(raw,dict):raise ValueError('Invalid property filters')
+    filters={}
+    for prop in ['charge','gravy','hydrophobic']:
+        for bound in ['min','max']:
+            key=prop+'_'+bound;value=raw.get(key)
+            if value is None or value=='':continue
+            if isinstance(value,bool):raise ValueError('Property bounds must be finite numbers')
+            value=float(value)
+            if not math.isfinite(value):raise ValueError('Property bounds must be finite numbers')
+            if prop=='hydrophobic' and not 0<=value<=100:raise ValueError('Hydrophobic percentage must be between 0 and 100')
+            filters[key]=value
+        if filters.get(prop+'_min',-math.inf)>filters.get(prop+'_max',math.inf):raise ValueError('Minimum cannot exceed maximum')
+    has_structure=raw.get('has_structure',False)
+    if not isinstance(has_structure,bool):raise ValueError('Structure filter must be a Boolean')
+    filters['has_structure']=has_structure
+    position=data.get('selected_position',0)
+    if isinstance(position,bool) or not isinstance(position,int) or not 0<=position<len(positions):raise ValueError('Invalid selected position')
+    ss=structure_corpus();structure_ids={r['peptide_id'] for r in ss};structure_sequences={r['sequence'] for r in ss}
+    pool=[]
     for r in corpus():
-        seq=r['sequence'];m=r['metadata'];title=str(m.get('Title') or '').strip();reference=str(m.get('Reference') or '').strip()
+        m=r['metadata'];title=str(m.get('Title') or '').strip();reference=str(m.get('Reference') or '').strip()
         study=bool(re.search(r'\b\d{6,9}\b',str(m.get('Pubmed_ID') or ''))) or (len(title)>12 and len(reference)>6 and title.lower() not in ['not included yet','not found'])
-        if len(seq)==len(positions) and study and all(not a or seq[i]==a for i,a in enumerate(positions)):
-            hits.append({k:r[k] for k in ['id','name','sequence','source_url']}|{'study':{k:m.get(k) for k in ['Pubmed_ID','Title','Reference','Activity']}})
-    return {'pattern':''.join(a or '?' for a in positions),'length':len(positions),'total':len(hits),'items':hits[:100],'limit':100}
+        if len(r['sequence'])==len(positions) and study:pool.append({**r,'has_structure':r['id'] in structure_ids or r['sequence'] in structure_sequences})
+    def matches(r,pattern):return all(not a or r['sequence'][i]==a for i,a in enumerate(pattern))
+    def properties_match(r):
+        if has_structure and not r['has_structure']:return False
+        return all(filters.get(prop+'_min',-math.inf)<=r['properties'][prop]<=filters.get(prop+'_max',math.inf) for prop in ['charge','gravy','hydrophobic'])
+    positional=[r for r in pool if matches(r,positions)];results=[r for r in positional if properties_match(r)]
+    relaxed=positions.copy();relaxed[position]='';suggestion_pool=[r for r in pool if matches(r,relaxed) and properties_match(r)]
+    counts={a:sum(r['sequence'][position]==a for r in suggestion_pool) for a in 'ACDEFGHIKLMNPQRSTVWY'}
+    suggestions=sorted([{'residue':a,'count':n,'percent':round(100*n/len(suggestion_pool),1)} for a,n in counts.items() if n],key=lambda r:(-r['count'],r['residue']))
+    items=[{k:r[k] for k in ['id','name','sequence','source_url','properties','has_structure']}|{'study':{k:r['metadata'].get(k) for k in ['Pubmed_ID','Title','Reference','Activity']}} for r in results[:100]]
+    return {'pattern':''.join(a or '?' for a in positions),'length':len(positions),'total':len(results),'positional_total':len(positional),'unique_sequences':len({r['sequence'] for r in results}),'filters':filters,'selected_position':position,'suggestion_total':len(suggestion_pool),'suggestions':suggestions,'items':items,'limit':100}
 
 COMPARE_LOCK=threading.BoundedSemaphore(2)
 def structure_search(data):

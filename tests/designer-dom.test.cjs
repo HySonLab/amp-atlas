@@ -1,0 +1,25 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
+const {parseHTML}=require('linkedom');
+const {window}=parseHTML(fs.readFileSync('static/index.html','utf8'));
+const document=window.document, el=id=>document.getElementById(id);
+for(const input of document.querySelectorAll('input'))input.checked=input.hasAttribute('checked');
+window.Element.prototype.focus=function(){};
+let timers=new Map(),next=0,calls=[],tab,analyzed=0;
+const context=vm.createContext({window,self:window,document,console,navigator:{clipboard:{writeText:async()=>{}}},setTimeout:fn=>{timers.set(++next,fn);return next},clearTimeout:id=>timers.delete(id),api:async(path,data)=>{calls.push({path,data});return {pattern:data.positions.map(a=>a||'?').join(''),length:data.positions.length,total:2,unique_sequences:1,positional_total:3,selected_position:data.selected_position,suggestion_total:2,suggestions:[{residue:'K',count:2,percent:100}],items:[],limit:100}},switchTab:t=>tab=t,select:()=>{}});
+for(const file of ['browser-core.js','wheel-core.js','wheel-designer.js'])vm.runInContext(fs.readFileSync('static/'+file,'utf8'),context);
+const flush=async()=>{const pending=[...timers.values()];timers.clear();pending.forEach(fn=>fn());await new Promise(setImmediate)};
+const click=id=>el(id).click();
+(async()=>{
+assert.equal(calls.length,0);assert.equal(el('wheel-analyze').disabled,true);
+document.querySelector('[data-aa="R"]').click();document.querySelector('[data-aa="W"]').click();
+assert.equal(calls.length,0);await flush();assert.equal(calls.length,1);assert.equal(calls[0].data.positions.slice(0,2).join(''),'RW');assert.match(el('wheel-live-summary').textContent,/2 matching/);
+el('wheel-charge-min').value='2';el('wheel-charge-min').oninput();await flush();assert.equal(calls.at(-1).data.filters.charge_min,2);
+el('wheel-charge-max').value='1';el('wheel-charge-max').oninput();const count=calls.length;await flush();assert.equal(calls.length,count);assert.match(el('wheel-live-status').textContent,/minimum|exceed|greater/i);
+click('wheel-reset-filters');await flush();el('wheel-live').checked=false;el('wheel-live').onchange();document.querySelector('[data-aa="A"]').click();await flush();const paused=calls.length;click('wheel-find');await flush();assert.equal(calls.length,paused+1);
+el('wheel-live').checked=true;el('wheel-live').onchange();click('wheel-clear');await flush();assert.equal(calls.length,paused+1);assert.match(el('wheel-design-properties').textContent,/0\/11/);
+click('wheel-undo');await flush();assert.equal(el('wheel-sequence').value.slice(0,3),'RWA');
+click('wheel-example');await flush();assert.equal(el('wheel-sequence').value,'RRWQWRMKKLG');assert.match(el('wheel-design-properties').textContent,/MASS/);assert.equal(el('wheel-fasta').disabled,false);
+el('analyze').onclick=()=>analyzed++;click('wheel-analyze');assert.equal(tab,'console');assert.equal(analyzed,1);assert.equal(el('sequence').value,'RRWQWRMKKLG');
+document.querySelector('[data-suggest-aa="K"]').click();await flush();assert.equal(el('wheel-sequence').value[0],'K');
+console.log('Designer DOM integration: all checks passed (editing, debounce, filters, pause/manual, clear/undo, properties, suggestions, workbench handoff).');
+})().catch(e=>{console.error(e);process.exitCode=1});
