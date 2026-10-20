@@ -7,6 +7,24 @@ A browser-only antimicrobial peptide research workspace: published peptide recor
 
 No rented server, API key, sign-in, remote inference or Python runtime is needed for visitors. The static website and its downloadable database are included in this repository. GitHub Pages serves public files; a Web Worker performs calculations on the visitor's device. Uploaded sequences and PDB files are never submitted to a server. GitHub may record ordinary page/data-file requests. External research links open the cited providers.
 
+## Technical Report
+
+The technical report describing the architecture, algorithms, implementation,
+and verification of AMP Atlas is publicly available:
+
+**Truong-Son Hy (2026).**  
+*AMP Atlas: A Browser-Only Workbench for Antimicrobial Peptide Exploration and Interactive Helical-Wheel Design.*  
+Technical Report, University of Alabama at Birmingham, October 2026.
+
+📄 **[Read the Technical Report (PDF)](./Technical_Report.pdf)**
+
+The report presents:
+- Integration of antimicrobial peptide records, chemical annotations, and PDB structures.
+- Interactive sequence analysis and molecular visualization.
+- An inverse helical-wheel designer with constraint-based peptide exploration.
+- Sequence-guided structural comparison and physicochemical calculations.
+- Reproducible software verification and performance measurements.
+
 ## Features
 
 - 12,784 DRAMP source records; 11,718 distinct sequence strings; 10,579 canonical records eligible for sequence calculations; 5,183 source SMILES annotations.
