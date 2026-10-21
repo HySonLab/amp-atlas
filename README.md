@@ -154,3 +154,17 @@ This is an independent DRAMP-inspired research workspace hosted for HySonLab. It
 Fill residues gradually to search after a 250 ms pause. Exact positional matches use the chosen length and treat empty positions as wildcards. Filter by pH-7 charge, GRAVY, hydrophobic percentage, or linked structures. The selected-position residue counts relax only that position while preserving other constraints; they count source records and are not activity predictions. Live search can be paused; manual search remains available. Complete designs show calculated mass, charge, GRAVY, hydrophobic fraction, pI and ideal-helical hydrophobic moment; incomplete designs show assigned-residue counts.
 
 The DOM integration suite exercises editing, debounce, filter validation, pause/manual search, clear/undo, residue suggestions, complete-design properties and the existing workbench handoff. Development tests require Node.js 22+ and pnpm 11.25.0; deployed Pages has no runtime package dependencies.
+
+## Citation
+
+```bibtex
+@misc{hy2026ampatlas,
+  author = {Hy, Truong-Son},
+  title = {{AMP Atlas: A Browser-Only Workbench for Antimicrobial Peptide Exploration and Interactive Helical-Wheel Design}},
+  year = {2026},
+  month = oct,
+  howpublished = {Technical report},
+  url = {https://hysonlab.github.io/amp-atlas/papers/amp-atlas.html},
+  note = {18 October 2026}
+}
+```
