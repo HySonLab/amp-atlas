@@ -25,3 +25,6 @@ assert "importScripts('browser-core.js?v=0.5','wheel-core.js?v=0.5')" in (docs/'
 total=sum(p.stat().st_size for p in docs.rglob('*') if p.is_file());assert total<1_000_000_000
 assert max(p.stat().st_size for p in ROOT.rglob('*') if p.is_file() and '.git' not in p.parts)<100_000_000
 print(f'Static integrity passed: {len(index):,} records, {len(structures)} chains, {len(shards)} shards; {total/1e6:.1f} MB < 1 GB.')
+
+from check_publication import check as check_publication
+check_publication()

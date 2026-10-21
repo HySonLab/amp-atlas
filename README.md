@@ -25,6 +25,15 @@ The report presents:
 - Sequence-guided structural comparison and physicochemical calculations.
 - Reproducible software verification and performance measurements.
 
+### Website hosting and scholarly discovery
+
+- [Read the abstract and citation](https://hysonlab.github.io/amp-atlas/papers/amp-atlas.html)
+- [View the report on the website (PDF)](https://hysonlab.github.io/amp-atlas/papers/amp-atlas-technical-report.pdf)
+
+The author-supplied PDF is preserved in `static/papers/` and copied unchanged into `docs/papers/` by the Pages builder. The standalone HTML landing page exposes the full abstract without JavaScript and includes Highwire citation metadata, a same-directory absolute PDF URL, JSON-LD and a downloadable BibTeX entry. Plain homepage links and a sitemap support discovery. Publication checks are part of the existing static-integrity workflow.
+
+These changes support crawler discovery; they do not submit a paper to Google Scholar or guarantee inclusion. See Google's inclusion guidelines: https://scholar.google.com/intl/en/scholar/inclusion.html. An institutional publications page or repository can also link to the report. If an arXiv version is published later, add its actual identifier and link; no arXiv identifier or DOI is claimed here.
+
 ## Features
 
 - 12,784 DRAMP source records; 11,718 distinct sequence strings; 10,579 canonical records eligible for sequence calculations; 5,183 source SMILES annotations.

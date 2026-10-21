@@ -163,7 +163,7 @@ class Handler(BaseHTTPRequestHandler):
             return self.send(path.read_bytes(),kind='text/plain',filename=path.name)
         path=ROOT/'static'/('index.html' if u.path=='/' else unquote(u.path.lstrip('/')))
         if not path.resolve().is_relative_to((ROOT/'static').resolve()) or not path.is_file():return self.send({'error':'Not found'},404)
-        kind={'.html':'text/html; charset=utf-8','.css':'text/css','.js':'text/javascript','.svg':'image/svg+xml'}.get(path.suffix,'application/octet-stream');return self.send(path.read_bytes(),kind=kind)
+        kind={'.html':'text/html; charset=utf-8','.css':'text/css','.js':'text/javascript','.svg':'image/svg+xml','.pdf':'application/pdf','.bib':'application/x-bibtex; charset=utf-8','.xml':'application/xml; charset=utf-8'}.get(path.suffix,'application/octet-stream');return self.send(path.read_bytes(),kind=kind)
     def export(self,q):
         fmt=q.get('format',['json'])[0];ident=q.get('id',[None])[0]
         with connection() as db:
