@@ -4,6 +4,7 @@ A browser-only antimicrobial peptide research workspace: published peptide recor
 
 **Website:** https://hysonlab.github.io/amp-atlas/  
 **Source code:** https://github.com/HySonLab/amp-atlas
+**Technical report:** https://arxiv.org/pdf/2610.29096
 
 No rented server, API key, sign-in, remote inference or Python runtime is needed for visitors. The static website and its downloadable database are included in this repository. GitHub Pages serves public files; a Web Worker performs calculations on the visitor's device. Uploaded sequences and PDB files are never submitted to a server. GitHub may record ordinary page/data-file requests. External research links open the cited providers.
 
@@ -158,13 +159,13 @@ The DOM integration suite exercises editing, debounce, filter validation, pause/
 ## Citation
 
 ```bibtex
-@misc{hy2026ampatlas,
-  author = {Hy, Truong-Son},
-  title = {{AMP Atlas: A Browser-Only Workbench for Antimicrobial Peptide Exploration and Interactive Helical-Wheel Design}},
-  year = {2026},
-  month = oct,
-  howpublished = {Technical report},
-  url = {https://hysonlab.github.io/amp-atlas/papers/amp-atlas.html},
-  note = {18 October 2026}
+@misc{hy2026ampatlasbrowseronlyworkbench,
+      title={AMP Atlas: A Browser-Only Workbench for Antimicrobial Peptide Exploration and Interactive Helical-Wheel Design}, 
+      author={Truong-Son Hy},
+      year={2026},
+      eprint={2610.29096},
+      archivePrefix={arXiv},
+      primaryClass={cs.CE},
+      url={https://arxiv.org/abs/2610.29096}, 
 }
 ```
