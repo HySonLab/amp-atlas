@@ -17,7 +17,7 @@ and verification of AMP Atlas is publicly available:
 
 **Truong-Son Hy (2026).**  
 *AMP Atlas: A Browser-Only Workbench for Antimicrobial Peptide Exploration and Interactive Helical-Wheel Design.*  
-Technical Report, University of Alabama at Birmingham, October 2026.
+arXiv:2610.29096 [cs.CE], 2026. [arXiv record](https://arxiv.org/abs/2610.29096).
 
 📄 **[Read the Technical Report (PDF)](./Technical_Report.pdf)**
 
@@ -28,6 +28,20 @@ The report presents:
 - Sequence-guided structural comparison and physicochemical calculations.
 - Reproducible software verification and performance measurements.
 
+### Citation
+
+```bibtex
+@misc{hy2026ampatlasbrowseronlyworkbench,
+      title={AMP Atlas: A Browser-Only Workbench for Antimicrobial Peptide Exploration and Interactive Helical-Wheel Design},
+      author={Truong-Son Hy},
+      year={2026},
+      eprint={2610.29096},
+      archivePrefix={arXiv},
+      primaryClass={cs.CE},
+      url={https://arxiv.org/abs/2610.29096},
+}
+```
+
 ### Website hosting and scholarly discovery
 
 - [Read the abstract and citation](https://hysonlab.github.io/amp-atlas/papers/amp-atlas.html)
@@ -35,7 +49,7 @@ The report presents:
 
 The author-supplied PDF is preserved in `static/papers/` and copied unchanged into `docs/papers/` by the Pages builder. The standalone HTML landing page exposes the full abstract without JavaScript and includes Highwire citation metadata, a same-directory absolute PDF URL, JSON-LD and a downloadable BibTeX entry. Plain homepage links and a sitemap support discovery. Publication checks are part of the existing static-integrity workflow.
 
-These changes support crawler discovery; they do not submit a paper to Google Scholar or guarantee inclusion. See Google's inclusion guidelines: https://scholar.google.com/intl/en/scholar/inclusion.html. An institutional publications page or repository can also link to the report. If an arXiv version is published later, add its actual identifier and link; no arXiv identifier or DOI is claimed here.
+These changes support crawler discovery; they do not submit a paper to Google Scholar or guarantee inclusion. See Google's inclusion guidelines: https://scholar.google.com/intl/en/scholar/inclusion.html. An institutional publications page or repository can also link to the report. The preferred citation is the arXiv record [arXiv:2610.29096](https://arxiv.org/abs/2610.29096), classified as `cs.CE`. The report page links to both arXiv and the preserved local PDF.
 
 ## Features
 

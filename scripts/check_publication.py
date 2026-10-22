@@ -22,11 +22,12 @@ class Page(HTMLParser):
         if self.in_json:self.json_ld.append(data)
 def check():
     docs=ROOT/'docs';paper=docs/'papers/amp-atlas.html';p=Page();p.feed(paper.read_text())
-    expected={'citation_title':'AMP Atlas: A Browser-Only Workbench for Antimicrobial Peptide Exploration and Interactive Helical-Wheel Design','citation_author':'Truong-Son Hy','citation_publication_date':'2026/10/18','citation_pdf_url':'https://hysonlab.github.io/amp-atlas/papers/amp-atlas-technical-report.pdf'}
+    expected={'citation_title':'AMP Atlas: A Browser-Only Workbench for Antimicrobial Peptide Exploration and Interactive Helical-Wheel Design','citation_author':'Truong-Son Hy','citation_publication_date':'2026/10/21','citation_arxiv_id':'2610.29096','citation_pdf_url':'https://hysonlab.github.io/amp-atlas/papers/amp-atlas-technical-report.pdf'}
     for key,value in expected.items():assert p.meta.get(key)==[value],key
     pdf_url=urlparse(expected['citation_pdf_url']);abstract_url=urlparse(p.meta['citation_abstract_html_url'][0]);assert pdf_url.netloc==abstract_url.netloc and Path(pdf_url.path).parent==Path(abstract_url.path).parent
     assert len(' '.join(p.abstract).split())>150,'Full abstract must be visible in source HTML'
     assert 'amp-atlas-technical-report.pdf' in p.links and 'amp-atlas.bib' in p.links
+    assert 'https://arxiv.org/abs/2610.29096' in p.links and 'https://arxiv.org/pdf/2610.29096' in p.links
     assert 'noindex' not in p.meta.get('robots',[''])[0]
     for name in ['amp-atlas.html','amp-atlas.bib','amp-atlas-technical-report.pdf']:
         source=ROOT/'static/papers'/name;published=docs/'papers'/name;assert published.read_bytes()==source.read_bytes(),name
@@ -34,6 +35,9 @@ def check():
     assert pdf==(ROOT/'Technical_Report.pdf').read_bytes(),'Published PDF must preserve the author-supplied report'
     schema=json.loads(''.join(p.json_ld));assert ' '.join(schema['abstract'].split())==' '.join(' '.join(p.abstract).removeprefix('Abstract').split())
     assert schema['headline']==expected['citation_title'] and schema['author'][0]['name']==expected['citation_author'] and schema['encoding']['contentUrl']==expected['citation_pdf_url']
+    assert schema['identifier']['value']=='2610.29096' and 'https://arxiv.org/abs/2610.29096' in schema['sameAs']
+    bib=(docs/'papers/amp-atlas.bib').read_text()
+    for field in ['@misc{hy2026ampatlasbrowseronlyworkbench,','author={Truong-Son Hy}','year={2026}','eprint={2610.29096}','archivePrefix={arXiv}','primaryClass={cs.CE}','url={https://arxiv.org/abs/2610.29096}']:assert field in bib,field
     home=Page();home.feed((docs/'index.html').read_text());assert 'papers/amp-atlas.html' in home.links and 'papers/amp-atlas-technical-report.pdf' in home.links
     assert not any(k.startswith('citation_') for k in home.meta),'Scholar tags belong to the paper page, not the app'
     sitemap=ET.parse(docs/'sitemap.xml');urls={n.text for n in sitemap.findall('.//{http://www.sitemaps.org/schemas/sitemap/0.9}loc')};assert p.meta['citation_abstract_html_url'][0] in urls
