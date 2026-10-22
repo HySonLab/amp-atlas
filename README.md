@@ -3,6 +3,7 @@
 A browser-only antimicrobial peptide research workspace: published peptide records, interactive molecular visualization, transparent calculations, and sequence/descriptor/3D neighbor searches.
 
 **Website:** https://hysonlab.github.io/amp-atlas/  
+
 **Source code:** https://github.com/HySonLab/amp-atlas
 
 **Technical report:** https://arxiv.org/pdf/2610.29096
