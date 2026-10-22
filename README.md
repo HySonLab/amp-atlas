@@ -3,10 +3,7 @@
 A browser-only antimicrobial peptide research workspace: published peptide records, interactive molecular visualization, transparent calculations, and sequence/descriptor/3D neighbor searches.
 
 **Website:** https://hysonlab.github.io/amp-atlas/  
-
 **Source code:** https://github.com/HySonLab/amp-atlas
-
-**Technical report:** https://arxiv.org/pdf/2610.29096
 
 No rented server, API key, sign-in, remote inference or Python runtime is needed for visitors. The static website and its downloadable database are included in this repository. GitHub Pages serves public files; a Web Worker performs calculations on the visitor's device. Uploaded sequences and PDB files are never submitted to a server. GitHub may record ordinary page/data-file requests. External research links open the cited providers.
 
